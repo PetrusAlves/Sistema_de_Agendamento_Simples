@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Consultas Medicas</title>
+
+</h:head>
+
+
+<h:body>
+	<h1>Consultas Agendadas</h1>
+
+	<h:form id="form">
+
+		<p:growl id="growl" showDetail="true" />
+
+		<p:dataTable id="agendamentos" var="agendamento"
+			value="#{agendamentoBean.lista}" editable="true"
+			style="margin-bottom:20px">
+			<p:column>
+				<p:selectBooleanCheckbox
+					value="#{agendamentoBean.selectedItems[agendamento.id]}" />
+			</p:column>
+
+
+			<p:column headerText="ID">
+				<h:outputText value="#{agendamento.id}" />
+			</p:column>
+
+			<p:column headerText="Nome do Paciente">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{agendamento.paciente}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{agendamento.paciente}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Médico">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{agendamento.medico}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu value="#{agendamento.medico}" style="width:100%">
+							<f:selectItem itemLabel="Selecione um tipo de medico"
+								itemValue="" />
+							<f:selectItem itemLabel="Cardiologista" itemValue="Cardiologista" />
+							<f:selectItem itemLabel="Clinico Geral" itemValue="Clinico Geral" />
+							<f:selectItem itemLabel="Cirurgião" itemValue="Cirurgiao" />
+							<f:selectItem itemLabel="Pediatria" itemValue="Pediatria" />
+							<f:selectItem itemLabel="Ginecologista" itemValue="Ginecologista" />
+							<f:selectItem itemLabel="Ortopedia" itemValue="Ortopedia" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Data e Hora da Consulta">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{agendamento.dataHoraConsulta}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:datePicker value="#{agendamento.dataHoraConsulta}"
+							showTime="true" pattern="dd/MM/yyyy HH:mm" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column style="width:6rem">
+				<p:rowEditor />
+			</p:column>
+
+		</p:dataTable>
+
+		<p:commandButton value="Salvar Alterações"
+			actionListener="#{agendamentoBean.updateConsultaSelecionada}"
+			update="agendamentos growl" icon="pi pi-check"
+			styleClass="rounded-button" style="margin-right: 15px" />
+
+		<p:commandButton value="Excluir Agendamento" icon="pi pi-times"
+			update="growl" styleClass="rounded-button ui-button-danger"
+			actionListener="#{agendamentoBean.excluirSelecionados}"
+			style="margin-top: 5px" />
+
+		<p:button value="Voltar a Pagina de Agendamento"
+			outcome="gerar_agendamento" styleClass="rounded-button"
+			style="margin-top: 5px; margin-left: 15px; margin-right: 1300px;,background-color; color: white;" />
+
+		<p:commandButton value="Quantidade De Agendamento"
+			actionListener="#{agendamentoBean.quantidadeAgendamentos}"
+			update="growl" styleClass="rounded-button" />
+
+	</h:form>
+</h:body>
+</html>

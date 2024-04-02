@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+	<title>Agendamento</title>
+</h:head>
+
+
+<body>
+	
+	<h1>Tela de Agendamento</h1>
+	
+	
+	<h:form id="formulario">
+		
+		<p:growl id="growl" showDetail="true" />
+		
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Nome Completo do Paciente" />
+			<p:inputText value="#{agendamentoBean.agenda.paciente}" />
+
+			<p:outputLabel value="Medico" />
+			<p:selectOneMenu value="#{agendamentoBean.agenda.medico}">
+				<f:selectItem itemLabel="Selecione um tipo de medico" itemValue="" />
+				<f:selectItem itemLabel="Cardiologista" itemValue="Cardiologista" />
+				<f:selectItem itemLabel="Clinico Geral" itemValue="Clinico Geral" />
+				<f:selectItem itemLabel="Cirurgião" itemValue="Cirurgiao" />
+				<f:selectItem itemLabel="Pediatria" itemValue="Pediatria" />
+				<f:selectItem itemLabel="Ginecologista" itemValue="Ginecologista" />
+				<f:selectItem itemLabel="Ortopedia" itemValue="Ortopedia" />
+			</p:selectOneMenu>
+
+
+			
+			<p:outputLabel value="Data e Hora da Consulta" />
+			<p:datePicker value="#{agendamentoBean.agenda.dataHoraConsulta}" showIcon="true" showTime="true"/> 
+			
+
+
+			<p:commandButton actionListener="#{agendamentoBean.salvar()}"
+				value="Cadastrar Consulta" update="formulario growl" icon="pi pi-check" />
+			<p:button value="Lista de Agendamentos" outcome="agendamento" />
+
+
+		</p:panelGrid>
+	</h:form>
+
+
+</body>
+</html>

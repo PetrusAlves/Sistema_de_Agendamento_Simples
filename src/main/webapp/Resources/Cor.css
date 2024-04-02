@@ -1,0 +1,20 @@
+.data-livre .ui-datepicker-current-day {
+    background-color: rgb(0, 255, 64) !important; /* verde */
+}
+
+.data-ocupada .ui-datepicker-current-day {
+    background-color: rgb(255, 0, 0) !important; /* vermelho */
+    
+    .botao-customizado {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Cor do texto branco */
+    border: none; /* Remover borda */
+    padding: 10px 20px; /* Padding para espaço interno */
+    text-align: center; /* Alinhamento do texto */
+    text-decoration: none; /* Remover sublinhado do texto */
+    display: inline-block; /* Display em linha */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor do mouse como ponteiro */
+    border-radius: 8px; /* Borda arredondada */
+}
+}
